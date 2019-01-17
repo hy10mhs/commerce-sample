@@ -1,15 +1,14 @@
 import { ofType, combineEpics } from 'redux-observable';
 import { of, merge } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
 import { mergeMap, map, catchError } from 'rxjs/operators';
-import { actions as toastrActions } from 'react-redux-toastr'
+import { actions as toastrActions } from 'react-redux-toastr';
 
-import CONSTANT from '../../constants';
 import * as action from './action';
+import * as fetch from './fetch';
 
 const getProductsRequest$ = action$ => action$.pipe(
   ofType(action.GET_PRODUCTS_REQUEST),
-  mergeMap(({ payload }) => ajax(`${CONSTANT.API_URL}/product`).pipe(
+  mergeMap(() => fetch.getProducts().pipe(
     map(({ response }) => action.getProductsSuccess(response)),
     catchError(e => merge(
       of(action.getProductsFailure(e)),
@@ -19,7 +18,7 @@ const getProductsRequest$ = action$ => action$.pipe(
         attention: true,
         message: '시스템 관리자에게 문의하세요.',
       })),
-    ))
+    )),
   )),
 );
 

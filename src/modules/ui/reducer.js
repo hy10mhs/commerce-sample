@@ -7,7 +7,7 @@ const initialState = {
   rankingLoading: false,
 };
 
-export default createReducer(initialState, (state) => ({
+export default createReducer(initialState, state => ({
   [productAction.GET_PRODUCTS_REQUEST]: { ...state, productLoading: true },
   [productAction.GET_PRODUCTS_SUCCESS]: { ...state, productLoading: false },
   [productAction.GET_PRODUCTS_FAILURE]: { ...state, productLoading: false },

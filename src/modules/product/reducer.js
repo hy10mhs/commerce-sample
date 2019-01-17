@@ -1,5 +1,5 @@
-import * as action from './action';
 import createReducer from 'utils/createReducer';
+import * as action from './action';
 
 const initialState = {
   list: [],

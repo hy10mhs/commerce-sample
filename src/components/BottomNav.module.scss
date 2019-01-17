@@ -1,0 +1,43 @@
+.menu {
+  display: none !important;
+  @media screen and (min-width: 600px) {
+    display: inline-flex !important;
+    position: fixed !important;
+    right: 2rem;
+    bottom: 2rem;
+  }
+}
+
+.nav-container {
+  position: fixed !important;
+  right: 50%;
+  bottom: 0;
+  transform: translateX(50%);
+  align-items: center;
+  border-top: 1px solid #ddd;
+  width: 100vw;
+  @media screen and (min-width: 600px) {
+    right: 1.375rem;
+    bottom: 7.5rem;
+    transform: unset;
+    flex-direction: column;
+    height: 25rem !important;
+    border-top: none;
+    width: unset;
+  }
+}
+.nav-container-hide {
+  display: none !important;
+}
+
+.nav-item {
+  min-width: 70px !important;
+}
+
+.add-icon-rotation svg {
+  animation: rotation 1s forwards;
+}
+@keyframes rotation {
+  from { transform: rotate(0); }
+  to { transform: rotate(135deg); }
+}
