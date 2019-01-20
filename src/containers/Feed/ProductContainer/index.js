@@ -99,8 +99,8 @@ class ProductContainer extends Component {
 }
 
 ProductContainer.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  list: PropTypes.arrayOf({}),
+  classes: PropTypes.object.isRequired,
+  list: PropTypes.array,
   getProductsRequest: PropTypes.func,
 };
 

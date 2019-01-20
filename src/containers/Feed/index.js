@@ -72,7 +72,7 @@ class Feed extends Component {
 }
 
 Feed.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(materialStyles)(Feed);

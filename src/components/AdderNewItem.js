@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
@@ -34,6 +35,9 @@ const materialStyles = theme => ({
   closeButton: {
     marginRight: 0,
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
@@ -41,7 +45,7 @@ const materialStyles = theme => ({
 });
 
 const AdderNewItem = ({ classes, openAdder, handleBottomNavIndex }) => {
-  const closeDrawer = () => handleBottomNavIndex(-1);
+  const closeDrawer = e => handleBottomNavIndex(e, -1);
 
   const fullList = (
     <div className={classes.fullList}>
@@ -63,17 +67,39 @@ const AdderNewItem = ({ classes, openAdder, handleBottomNavIndex }) => {
       <List>
         {['Title', 'Target', 'Description'].map(text => (
           <ListItem button key={text}>
-            <TextField
-              label={text}
-              className={classes.textField}
-              margin="normal"
-              variant="outlined"
-              fullWidth
-              multiline={text === 'Description'}
-              rows={text === 'Description' && 3}
-            />
+            {
+              text === 'Description' ? (
+                <TextField
+                  label={text}
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth
+                  multiline
+                  rows={text === 'Description' && 3}
+                />
+              ) : (
+                <TextField
+                  label={text}
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth
+                />
+              )
+            }
           </ListItem>
         ))}
+      </List>
+      <Divider />
+      <List className={classes.closeList}>
+        <ListItem onClick={closeDrawer} className={classes.closeButtonWrapper}>
+          <ListItemIcon className={classes.closeButton}>
+            <Button variant="outlined" color="secondary" component="span" className={classes.button}>
+              Upload
+            </Button>
+          </ListItemIcon>
+        </ListItem>
       </List>
     </div>
   );
@@ -96,7 +122,7 @@ const AdderNewItem = ({ classes, openAdder, handleBottomNavIndex }) => {
 };
 
 AdderNewItem.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+  classes: PropTypes.object.isRequired,
   openAdder: PropTypes.bool.isRequired,
   handleBottomNavIndex: PropTypes.func.isRequired,
 };

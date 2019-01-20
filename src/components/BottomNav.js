@@ -87,8 +87,8 @@ const BottomNav = (props) => {
 };
 
 BottomNav.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  history: PropTypes.shape({}).isRequired,
+  classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   openMenu: PropTypes.bool.isRequired,
   toggleOpenMenu: PropTypes.func.isRequired,
   bottomNavIndex: PropTypes.number.isRequired,

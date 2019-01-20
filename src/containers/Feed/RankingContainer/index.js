@@ -170,8 +170,8 @@ class RankingContainer extends Component {
 }
 
 RankingContainer.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  list: PropTypes.arrayOf({}),
+  classes: PropTypes.object.isRequired,
+  list: PropTypes.array,
   getRankingRequest: PropTypes.func,
 };
 

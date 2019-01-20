@@ -72,7 +72,7 @@ const TopNav = (props) => {
 };
 
 TopNav.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+  classes: PropTypes.object.isRequired,
   openMenu: PropTypes.bool.isRequired,
 };
 
