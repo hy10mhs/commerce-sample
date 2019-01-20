@@ -23,6 +23,7 @@
     flex-direction: column;
     height: 25rem !important;
     border-top: none;
+    border-radius: 20px;
     width: unset;
   }
 }
@@ -31,7 +32,7 @@
 }
 
 .nav-item {
-  min-width: 70px !important;
+  min-width: 60px !important;
 }
 
 .add-icon-rotation svg {

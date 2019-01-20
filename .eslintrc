@@ -4,6 +4,10 @@
   "rules": {
     "import/no-unresolved": "off",
     "react/jsx-filename-extension": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "no-shadow": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "no-nested-ternary": "off"
   }
 }

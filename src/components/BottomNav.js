@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import classnames from 'classnames';
-
-import { minWidth600px } from 'utils/matchMedia';
 
 import { withStyles } from '@material-ui/core';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -36,14 +34,10 @@ const materailStyles = theme => ({
 
 const BottomNav = (props) => {
   const {
-    classes, history, openMenu, toggleOpenMenu,
+    classes, history,
+    openMenu, toggleOpenMenu,
+    bottomNavIndex, handleBottomNavIndex,
   } = props;
-  const [navIndex, setNavIndex] = useState(['feed', 'store', '-1', 'notice', 'setting'].indexOf(history.location.pathname.slice(1)));
-
-  const handleNavIndex = (e, value) => {
-    setNavIndex(value);
-    if (minWidth600px() && openMenu) toggleOpenMenu();
-  };
 
   return (
     <div>
@@ -51,8 +45,8 @@ const BottomNav = (props) => {
         <Menu />
       </Fab>
       <BottomNavigation
-        value={navIndex}
-        onChange={handleNavIndex}
+        value={bottomNavIndex}
+        onChange={handleBottomNavIndex}
         showLabels
         className={classnames(classes.root, openMenu ? styles['nav-container'] : styles['nav-container-hide'])}
       >
@@ -60,18 +54,18 @@ const BottomNav = (props) => {
           onClick={() => history.push('/feed')}
           className={styles['nav-item']}
           label="Feed"
-          icon={navIndex === 0 ? <EventNote /> : <EventNoteOutlined />}
+          icon={bottomNavIndex === 0 ? <EventNote /> : <EventNoteOutlined />}
         />
         <BottomNavigationAction
           onClick={() => history.push('/store')}
           className={styles['nav-item']}
           label="Store"
-          icon={navIndex === 1 ? <Store /> : <StoreOutlined />}
+          icon={bottomNavIndex === 1 ? <Store /> : <StoreOutlined />}
         />
         <BottomNavigationAction
-          className={classnames(styles['nav-item'], navIndex === 2 && styles['add-icon-rotation'])}
+          className={classnames(styles['nav-item'], bottomNavIndex === 2 && styles['add-icon-rotation'])}
           label=""
-          icon={navIndex === 2
+          icon={bottomNavIndex === 2
             ? <AddCircle className={classes.addIcon} />
             : <AddCircleOutlined className={classes.addIcon} />}
         />
@@ -79,13 +73,13 @@ const BottomNav = (props) => {
           onClick={() => history.push('/notice')}
           className={styles['nav-item']}
           label="Notice"
-          icon={navIndex === 3 ? <Notifications /> : <NotificationsOutlined />}
+          icon={bottomNavIndex === 3 ? <Notifications /> : <NotificationsOutlined />}
         />
         <BottomNavigationAction
           onClick={() => history.push('/setting')}
           className={styles['nav-item']}
           label="Setting"
-          icon={navIndex === 4 ? <Person /> : <PersonOutlined />}
+          icon={bottomNavIndex === 4 ? <Person /> : <PersonOutlined />}
         />
       </BottomNavigation>
     </div>
@@ -97,6 +91,8 @@ BottomNav.propTypes = {
   history: PropTypes.shape({}).isRequired,
   openMenu: PropTypes.bool.isRequired,
   toggleOpenMenu: PropTypes.func.isRequired,
+  bottomNavIndex: PropTypes.number.isRequired,
+  handleBottomNavIndex: PropTypes.func.isRequired,
 };
 
 export default withRouter(withStyles(materailStyles)(BottomNav));

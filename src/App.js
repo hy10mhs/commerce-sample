@@ -11,6 +11,7 @@ import { minWidth600px } from 'utils/matchMedia';
 
 import TopNav from 'components/TopNav';
 import BottomNav from 'components/BottomNav';
+import AdderNewItem from 'components/AdderNewItem';
 
 import Feed from 'containers/Feed';
 import Store from 'containers/Store';
@@ -23,6 +24,7 @@ const store = configureStore();
 
 const App = () => {
   const [openMenu, setOpenMenu] = useState(!minWidth600px());
+  const [bottomNavIndex, setBottomNavIndex] = useState(['feed', 'store', '-1', 'notice', 'setting'].indexOf(history.location.pathname.slice(1)));
 
   useEffect(() => {
     const listener = () => {
@@ -34,6 +36,11 @@ const App = () => {
   });
 
   const toggleOpenMenu = () => setOpenMenu(!openMenu);
+
+  const handleBottomNavIndex = (e, value) => {
+    setBottomNavIndex(value);
+    if (minWidth600px() && openMenu) toggleOpenMenu();
+  };
 
   return (
     <Provider store={store}>
@@ -52,6 +59,12 @@ const App = () => {
           <BottomNav
             openMenu={openMenu}
             toggleOpenMenu={toggleOpenMenu}
+            bottomNavIndex={bottomNavIndex}
+            handleBottomNavIndex={handleBottomNavIndex}
+          />
+          <AdderNewItem
+            openAdder={bottomNavIndex === 2}
+            handleBottomNavIndex={handleBottomNavIndex}
           />
         </div>
       </ConnectedRouter>

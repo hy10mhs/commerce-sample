@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 
 import CardGiftcard from '@material-ui/icons/CardGiftcard';
 import Stars from '@material-ui/icons/Stars';
@@ -15,11 +14,12 @@ import RankingContainer from './RankingContainer';
 
 import CONSTANTS from '../../constants';
 
+import styles from './Feed.module.scss';
+
 const materialStyles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100vw',
     fontSize: '10px',
@@ -32,9 +32,9 @@ const materialStyles = {
 function TabContainer(props) {
   const { children } = props;
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <div className={styles.container}>
       {children}
-    </Typography>
+    </div>
   );
 }
 
@@ -58,7 +58,7 @@ class Feed extends Component {
 
     return (
       <div className={classes.container}>
-        <AppBar position="static" className={classes.appBar}>
+        <AppBar position="sticky" className={classes.appBar}>
           <Tabs value={navIndex} onChange={this.handleNavIndex}>
             <Tab icon={<CardGiftcard />} />
             <Tab icon={<Stars />} />
