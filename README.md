@@ -6,5 +6,6 @@
 $ git clone https://github.com/hy10mhs/commerce-sample.git
 $ cd commerce-sample
 $ npm install
+$ npm install -g json-server
 $ npm run dev
 ```
